@@ -241,7 +241,7 @@
                   <h3>Tagline:</h3>
                   <p>"${tagline}"</p>
                   <h3>Genres:</h3>
-                  <p>${genres[0].name},${genres[1].name} </p>
+                  <p id ="genre_p"> </p>
                   <p><strong>Movie Details:</strong></p>
                   <p>${overview}</p>
                   <h3>Ratings:</h3>
@@ -254,6 +254,14 @@
         
          
          `;
+    }
+
+    function genres({genres}){
+      return`
+      
+      ${genres[0].name},${genres[1].name}
+      
+      `
     }
 
     
@@ -279,6 +287,7 @@
       let data2 = await Lib.getData(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=06689829be885c3a8d818a4217f993c6&language=en-US`);
       console.log(data2);
       Lib.renderItem(data2, movieDescription, '#details');
+      Lib.renderItem(data2, genres, '#genre_p');
       
       
     }
